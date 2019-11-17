@@ -3,7 +3,6 @@ function err() {
   document.querySelector(".error").innerText = "Please enter a valid username";
 }
 
- 
 function displayAccountDetails() {
   let uname = $("#instaUsername").val();
 
@@ -13,7 +12,7 @@ function displayAccountDetails() {
     return err();
   } else {
     let accounturl = "https://www.instagram.com/" + uname + "/?__a=1";
-    console.log(accounturl);
+    // console.log(accounturl);
     fetch(accounturl)
       .then(function(response) {
         // The JSON data will arrive here
@@ -21,22 +20,22 @@ function displayAccountDetails() {
         //if the name is not valid, throw an error
         if (response.status == 404 || response.status == 400) {
           $(".accountDetails").hide();
-          $(".error").show().html("User Doesn't Exist");
-          
+          $(".error")
+            .show()
+            .html("User Doesn't Exist");
 
- 
           //else proceed to get the response json data
         } else {
           return response.json();
         }
       }) //once the data is succesfully pulled its then appended into object named instagram
       .then(function(instagram) {
-
-        if ( instagram.graphql.user.is_private == true) {
+        if (instagram.graphql.user.is_private == true) {
           console.log("private");
           $(".accountDetails").hide();
-          $(".error").show().html("This account is Private");
- 
+          $(".error")
+            .show()
+            .html("This account is Private");
         } else {
           appendData(instagram);
         }
@@ -45,12 +44,10 @@ function displayAccountDetails() {
       .catch(function(err) {
         console.log("Error: " + err);
         // $(".error").show().html("Oops something went wrong, try again");
-
       });
 
     function appendData(instagram) {
       $(".error").hide();
-
 
       $("#dp").html(
         '<img src="' +
@@ -60,44 +57,69 @@ function displayAccountDetails() {
           "'s Profile pic\"  >"
       );
 
-      $("#username").text(instagram.graphql.user.username);
-      $("#FullName").text(instagram.graphql.user.full_name);
-      $("#followers").text(instagram.graphql.user.edge_followed_by.count
+      $("#username").html("<b>" + instagram.graphql.user.username + "<b>");
+      $("#FullName").html("<b>" + instagram.graphql.user.full_name + "<b>");
+      $("#followers").html(
+        "<b>" + instagram.graphql.user.edge_followed_by.count + "<b>"
       );
-      $("#following").text(instagram.graphql.user.edge_follow.count
-      );
-      $("#bio").text(instagram.graphql.user.biography);
-      $("#website").text(instagram.graphql.user.external_url);
-
-      $("#totalPostsUploaded").text(instagram.graphql.user.edge_owner_to_timeline_media.count
+      $("#following").html(
+        "<b>" + instagram.graphql.user.edge_follow.count + "<b>"
       );
 
-      let profileURL = "https://instagram.com/" + instagram.graphql.user.username;
-      $("#visitProfile").prop({
-        href:profileURL, 
-        title:"Opens in a new window",
-  
-    }).click(function(){
-      window.open(this.href);
-      return false;
-    });
-      
-      
- 
-   
-      var url =
-      instagram.graphql.user.edge_owner_to_timeline_media.edges[0].node
-        .display_url;
+      if (instagram.graphql.user.biography == null) {
+        $("#bio")
+          .html(instagram.graphql.user.biography)
+          .hide();
+      } else {
+        $("#bio").html(instagram.graphql.user.biography);
+      }
+
+      if (instagram.graphql.user.external_url == null) {
+        $("#website").hide();
+      } else {
+        $("#website").show();
+        $("#website").html(
+          "Website: \n" + "<b>" + instagram.graphql.user.external_url + "<b>"
+        );
+      }
+
+      $("#totalPostsUploaded").html(
+        "<b>" +
+          instagram.graphql.user.edge_owner_to_timeline_media.count +
+          "<b>"
+      );
+
+      let profileURL =
+        "https://instagram.com/" + instagram.graphql.user.username;
+      $("#visitProfile")
+        .prop({
+          href: profileURL,
+          title: "Opens in a new window"
+        })
+        .click(function() {
+          window.open(this.href);
+          return false;
+        });
+
+      if (instagram.graphql.user.edge_owner_to_timeline_media.count == 0) {
+        console.log("No posts");
+        $("#latestPost").hide();
+      } else {
+        var url =
+          instagram.graphql.user.edge_owner_to_timeline_media.edges[0].node
+            .display_url;
+            $("#latestPost").show();
         $("#latestPost").html(
-          '<img src="' +
+          "Latest Post thumbnail: \n" +
+            '<img src="' +
             url +
             '" alt="' +
             instagram.graphql.user.username +
             "'s Latest Post\"  >"
         );
-      
-        $(".accountDetails").show();
+      }
 
+      $(".accountDetails").show();
     }
   }
 }
