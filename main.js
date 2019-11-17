@@ -1,0 +1,103 @@
+function err() {
+  $(".error").show();
+  document.querySelector(".error").innerText = "Please enter a valid username";
+}
+
+ 
+function displayAccountDetails() {
+  let uname = $("#instaUsername").val();
+
+  if (uname == "") {
+    console.log("username is empty");
+    $(".accountDetails").hide();
+    return err();
+  } else {
+    let accounturl = "https://www.instagram.com/" + uname + "/?__a=1";
+    console.log(accounturl);
+    fetch(accounturl)
+      .then(function(response) {
+        // The JSON data will arrive here
+
+        //if the name is not valid, throw an error
+        if (response.status == 404 || response.status == 400) {
+          $(".accountDetails").hide();
+          $(".error").show().html("User Doesn't Exist");
+          
+
+ 
+          //else proceed to get the response json data
+        } else {
+          return response.json();
+        }
+      }) //once the data is succesfully pulled its then appended into object named instagram
+      .then(function(instagram) {
+
+        if ( instagram.graphql.user.is_private == true) {
+          console.log("private");
+          $(".accountDetails").hide();
+          $(".error").show().html("This account is Private");
+ 
+        } else {
+          appendData(instagram);
+        }
+      })
+      // if anything goes wrong we can check the err msg thru catch
+      .catch(function(err) {
+        console.log("Error: " + err);
+        // $(".error").show().html("Oops something went wrong, try again");
+
+      });
+
+    function appendData(instagram) {
+      $(".error").hide();
+
+
+      $("#dp").html(
+        '<img src="' +
+          instagram.graphql.user.profile_pic_url_hd +
+          '" alt="' +
+          instagram.graphql.user.username +
+          "'s Profile pic\"  >"
+      );
+
+      $("#username").text(instagram.graphql.user.username);
+      $("#FullName").text(instagram.graphql.user.full_name);
+      $("#followers").text(instagram.graphql.user.edge_followed_by.count
+      );
+      $("#following").text(instagram.graphql.user.edge_follow.count
+      );
+      $("#bio").text(instagram.graphql.user.biography);
+      $("#website").text(instagram.graphql.user.external_url);
+
+      $("#totalPostsUploaded").text(instagram.graphql.user.edge_owner_to_timeline_media.count
+      );
+
+      let profileURL = "https://instagram.com/" + instagram.graphql.user.username;
+      $("#visitProfile").prop({
+        href:profileURL, 
+        title:"Opens in a new window",
+  
+    }).click(function(){
+      window.open(this.href);
+      return false;
+    });
+      
+      
+ 
+   
+      var url =
+      instagram.graphql.user.edge_owner_to_timeline_media.edges[0].node
+        .display_url;
+        $("#latestPost").html(
+          '<img src="' +
+            url +
+            '" alt="' +
+            instagram.graphql.user.username +
+            "'s Latest Post\"  >"
+        );
+      
+        $(".accountDetails").show();
+
+    }
+  }
+}

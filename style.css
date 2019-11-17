@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    min-height: 100%
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    background: #eaeaea
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+.leftBlock {
+    float: left
+}
+
+.rightBlock {
+    float: right
+}
+
+.clearFix {
+    clear: both
+}
+
+.title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 50px;
+    background-color: #121212;
+    color: #fff;
+    margin-top: 0;
+}
+
+input {
+    /* width: 300px; */
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #cecece;
+    font-size: 1rem;
+    line-height: normal;
+    border-radius: 10px;
+}
+
+.submitBtn {
+    display: block;
+    text-align: center;
+    margin-top: 15px
+}
+
+.btn,
+.btn-long {
+    margin-top: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background: #5900ff;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s all ease;
+    font-size: 1rem
+}
+
+.btn-long {
+    width: 250px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.btn:hover {
+    border: 1px solid #5900ff;
+    background: #4400c4;
+    color: #fff;
+    box-shadow: 2px 2px 10px 0 #5900ff1f;
+    transition: .2s all ease
+}
+
+.btn:focus,
+input:focus {
+    outline: 0
+}
+
+ul {
+    padding: 0;
+    margin: 0
+}
+
+li {
+    list-style: none;
+    text-align: left;
+    margin: 10px;
+}
+
+li > span {
+    display: inline-block;
+}
+.error {
+    display: none;
+    color: red;
+    padding-top: 5px;
+    font-size: 16px;
+    font-weight: 600
+}
+
+ 
+.wrapper {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+}
+
+.wrapper>div {
+    margin: 10px;
+}
+
+
+
+
+#username {
+    font-family: 'IBM Plex Sans', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.userInput {
+    margin: 50px;
+}
+
+#bio {
+    white-space: pre-line;
+    line-height: normal;
+    margin: 10px;
+    word-break: break-word;
+
+}
+
+ 
+
+#dp>img {
+    width: 150px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 10px #00000085;
+    height: auto;
+    display: block;
+    margin: 35px auto 5px auto;
+}
+
+#latestPost>img {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 35px auto;
+    box-shadow: 1px 2px 10px #00000085;
+border-radius: 10px;
+}
+
+.accountDetails {
+    display: none;
+    word-break: break-word;
+}
+
+
+#followers,#following,#totalPostsUploaded,#FullName,#website,#visitProfile {
+    font-weight: bold;
+
+}
+
+
+.main-content {
+    width: 50vw;
+    margin: 20px auto 10px auto;
+    box-shadow: 1px 2px 10px #00000047;
+    border-radius: 10px;
+    padding: 15px;    
+}
+
+.main-content-1 {
+  
+}
+.main-content-2 > li {
+  text-align: center;
+  margin: 10px;
+}
+
+.pageContentWrapper {
+    margin-bottom: 150px
+}
+footer {
+    text-align: center;
+    line-height: 100px;
+    background-color: #121212;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow: hidden
+}
+
+
+
+
+@media all and (max-width:420px){
+    .main-content {
+        width: 70vw; 
+    }   
+}

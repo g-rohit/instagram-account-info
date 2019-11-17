@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <link href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600,700|Open+Sans:400,600,700&display=swap'
+        rel='stylesheet'>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+
+    <title>Instagram Account Details </title>
+</head>
+
+<body>
+    <div class='container'>
+        <h1 class='title'>Get Instagram account details</h1>
+        <div class='wrapper'>
+            <div class="userInput">
+                <input type="text" placeholder="Eg: PrismHyderabad" id="instaUsername"> <input type="button"
+                    value="Get info" class="btn" onclick="displayAccountDetails()">
+            </div>
+            <p class="error"></p>
+            <div class="accountDetails">
+                
+                <ul>
+                    <li>
+                        <div id="dp"></div>
+                    </li>
+                 <div class="main-content main-content-1">
+                        <li>Username:
+                                <span id="username"></span>
+                            </li>
+                            <li>Full Name:
+                                <span id="FullName"></span>
+                            </li>
+        
+                            <li>Followers count: <span id="followers"></span></li>
+                            <li>Following count: <span id="following"></span></li>
+                            <li>Biography: <br><span id="bio"></span></li>
+                            <li>Website: <br><span id="website"></span></li>
+                            <li>Total Posts Uploaded:
+                                <span id="totalPostsUploaded"></span></li>
+                                
+                            </div>
+
+                            <div class="main-content main-content-2">
+                            <li>Latest Post thumbnail:
+                                    <div id="latestPost"></div>
+                                </li>
+
+                                <li>
+                                    <a href="" id="visitProfile">Visit this profile</a> on instagram
+                                </li>
+                            </div>
+                   
+                </ul>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class='pageContentWrapper'></div>
+    <footer>&copy; Developed by G Rohit</footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type='text/javascript' src='main.js'></script>
+</body>
+
+</html>
