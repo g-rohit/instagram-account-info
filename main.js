@@ -134,7 +134,7 @@ function displayAccountDetails() {
 
 let getHDimage = function () {
   let userInputURL = $("#userInputURL").val();
-let trim = userInputURL.substring(0,40);
+  let trim = userInputURL.substring(0, 40);
   if (userInputURL == "") {
     $(".error2")
       .show()
@@ -142,13 +142,35 @@ let trim = userInputURL.substring(0,40);
   } else {
     let HdImageURL = "media/?size=l";
     let full = trim + HdImageURL;
-    try {
-      console.log("image opened successfully")
-      return window.open(full);
-    } catch (error) {
-      console.log("Error getting the image, err is: " + err)
+    (async () => {
+      const response = await fetch(full);
+      // console.log(response.url);
 
-    }
+      $("#imageDLURL").html('<img src="' +
+        response.url +
+        '" alt="' + "'s Latest Post\"  >"
+      );
+
+      ('<img src=' + response.url > '');
+
+      $('<a/>')
+      .addClass('btn-long download-btn')
+      .attr({
+        'href': response.url,
+        'target': '_blank',
+        download : true
+      })
+      .text('Download image')
+      .appendTo('#imageDLURL');
+      
+      ;
+
+    })();
+$("#userInputURL").val("");
+
+    // console.log(response.url);
+    // return window.open(response.url);
+
   }
 
 }
