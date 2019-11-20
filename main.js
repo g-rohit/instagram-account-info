@@ -14,7 +14,7 @@ function displayAccountDetails() {
     let accounturl = "https://www.instagram.com/" + uname + "/?__a=1";
     // console.log(accounturl);
     fetch(accounturl)
-      .then(function(response) {
+      .then(function (response) {
         // The JSON data will arrive here
 
         //if the name is not valid, throw an error
@@ -29,7 +29,7 @@ function displayAccountDetails() {
           return response.json();
         }
       }) //once the data is succesfully pulled its then appended into object named instagram
-      .then(function(instagram) {
+      .then(function (instagram) {
         if (instagram.graphql.user.is_private == true) {
           console.log("private");
           $(".accountDetails").hide();
@@ -41,7 +41,7 @@ function displayAccountDetails() {
         }
       })
       // if anything goes wrong we can check the err msg thru catch
-      .catch(function(err) {
+      .catch(function (err) {
         console.log("Error: " + err);
         // $(".error").show().html("Oops something went wrong, try again");
       });
@@ -51,13 +51,13 @@ function displayAccountDetails() {
 
       $("#dp").html(
         '<img src="' +
-          instagram.graphql.user.profile_pic_url_hd +
-          '" alt="' +
-          instagram.graphql.user.username +
-          "'s Profile pic\"  >"
+        instagram.graphql.user.profile_pic_url_hd +
+        '" alt="' +
+        instagram.graphql.user.username +
+        "'s Profile pic\"  >"
       );
 
-      $("#username").html("<b>" + instagram.graphql.user.username + "<b>");
+      $("#username").html("<b>@" + instagram.graphql.user.username + "<b>");
       $("#FullName").html("<b>" + instagram.graphql.user.full_name + "<b>");
       $("#followers").html(
         "<b>" + instagram.graphql.user.edge_followed_by.count + "<b>"
@@ -85,8 +85,8 @@ function displayAccountDetails() {
 
       $("#totalPostsUploaded").html(
         "<b>" +
-          instagram.graphql.user.edge_owner_to_timeline_media.count +
-          "<b>"
+        instagram.graphql.user.edge_owner_to_timeline_media.count +
+        "<b>"
       );
 
       let profileURL =
@@ -96,7 +96,7 @@ function displayAccountDetails() {
           href: profileURL,
           title: "Opens in a new window"
         })
-        .click(function() {
+        .click(function () {
           window.open(this.href);
           return false;
         });
@@ -108,14 +108,14 @@ function displayAccountDetails() {
         var url =
           instagram.graphql.user.edge_owner_to_timeline_media.edges[0].node
             .display_url;
-            $("#latestPost").show();
+        $("#latestPost").show();
         $("#latestPost").html(
           "Latest Post thumbnail: \n" +
-            '<img src="' +
-            url +
-            '" alt="' +
-            instagram.graphql.user.username +
-            "'s Latest Post\"  >"
+          '<img src="' +
+          url +
+          '" alt="' +
+          instagram.graphql.user.username +
+          "'s Latest Post\"  >"
         );
       }
 
@@ -123,3 +123,33 @@ function displayAccountDetails() {
     }
   }
 }
+
+
+
+
+// Insta post download:
+
+
+
+
+let getHDimage = function () {
+  let userInputURL = $("#userInputURL").val();
+let trim = userInputURL.substring(0,40);
+  if (userInputURL == "") {
+    $(".error2")
+      .show()
+      .html("Please enter a valid post url");
+  } else {
+    let HdImageURL = "media/?size=l";
+    let full = trim + HdImageURL;
+    try {
+      console.log("image opened successfully")
+      return window.open(full);
+    } catch (error) {
+      console.log("Error getting the image, err is: " + err)
+
+    }
+  }
+
+}
+

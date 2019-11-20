@@ -14,52 +14,69 @@
 
 <body>
     <div class='container'>
-        <h1 class='title'>Get Instagram account details</h1>
+        <h1 class='title'>Instagram tools</h1>
         <div class='wrapper'>
+                <h4 class='sub-title'>Get Instagram basic account details</h4>
+
             <div class="userInput">
-                <input type="text" placeholder="Eg: dondiablo" id="instaUsername"> <input type="button"
-                    value="Get info" class="btn" onclick="displayAccountDetails()">
+                <input type="text" placeholder="Eg: dondiablo" id="instaUsername"> <input type="button" value="Get info"
+                    class="btn" onclick="displayAccountDetails()">
             </div>
             <p class="error"></p>
             <div class="accountDetails">
-                
+
                 <ul>
                     <li>
                         <div id="dp"></div>
                     </li>
-                 <div class="main-content main-content-1">
+                    <div class="main-content main-content-1">
                         <li>Username:
-                                <span id="username"></span>
-                            </li>
-                            <li>Full Name:
-                                <span id="FullName"></span>
-                            </li>
-        
-                            <li>Followers count: <span id="followers"></span></li>
-                            <li>Following count: <span id="following"></span></li>
-                            <li>Biography: <br><span id="bio"></span></li>
-                            <li><span id="website"></span></li>
-                            <li>Total Posts Uploaded:
-                                <span id="totalPostsUploaded"></span></li>
-                                
-                            </div>
+                            <span id="username"></span>
+                        </li>
+                        <li>Full Name:
+                            <span id="FullName"></span>
+                        </li>
 
-                            <div class="main-content main-content-2">
-                            <li>
-                                    <div id="latestPost"></div>
-                                </li>
+                        <li>Followers count: <span id="followers"></span></li>
+                        <li>Following count: <span id="following"></span></li>
+                        <li>Biography: <br><span id="bio"></span></li>
+                        <li><span id="website"></span></li>
+                        <li>Total Posts Uploaded:
+                            <span id="totalPostsUploaded"></span></li>
 
-                                <li>
-                                    <a href="" id="visitProfile"><b>Visit this profile</b></a> on instagram
-                                </li>
-                            </div>
-                   
+                    </div>
+
+                    <div class="main-content main-content-2">
+                        <li>
+                            <div id="latestPost"></div>
+                        </li>
+
+                        <li>
+                            <a href="" id="visitProfile"><b>Visit this profile</b></a> on instagram
+                        </li>
+                    </div>
+
                 </ul>
 
 
 
 
             </div>
+
+           
+        </div>
+    </div>
+    <div class='container'>
+        
+        <div class='wrapper'>
+                <h4 class='sub-title'>Download instagram post in HD</h4>
+            <div class="downloadingImage">
+                <div class="userInput">
+                               <input type="text" placeholder="Eg: https://www.instagram.com/p/B2Hvmu3Ap49/" id="userInputURL" class="inputURL"> <input type="button" value="Downoad"
+                                   class="btn-long" onclick="getHDimage()">
+                           </div>
+                           <p class="error2"></p>
+                           </div>
         </div>
     </div>
     <div class='pageContentWrapper'></div>

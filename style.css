@@ -42,13 +42,18 @@ a {
 }
 
 input {
-    /* width: 300px; */
+ 
     height: 50px;
-    padding: 10px;
+    padding: 10px 20px;
     border: 1px solid #cecece;
     font-size: 1rem;
     line-height: normal;
-    border-radius: 10px;
+    border-radius: 50px;
+}
+
+.inputURL {
+    min-width: 30vw;
+/* width: 100%; */
 }
 
 .submitBtn {
@@ -81,13 +86,20 @@ input {
     appearance: none
 }
 
-.btn:hover {
+.btn:hover , .btn-long:hover {
     border: 1px solid #5900ff;
     background: #4400c4;
     color: #fff;
     box-shadow: 2px 2px 10px 0 #5900ff1f;
     transition: .2s all ease
 }
+
+.userInput {
+    position: relative;
+}
+
+ 
+
 
 .btn:focus,
 input:focus {
@@ -108,7 +120,7 @@ li {
 li > span {
     display: inline-block;
 }
-.error {
+.error , .error2 {
     display: none;
     color: red;
     padding-top: 5px;
@@ -120,9 +132,10 @@ li > span {
 .wrapper {
     width: 90%;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
     background: #fff;
     padding: 20px;
+
 }
 
 .wrapper>div {
@@ -140,10 +153,7 @@ li > span {
     font-weight: bold;
 }
 
-.userInput {
-    margin: 50px;
-}
-
+ 
 #bio {
     white-space: pre-line;
     line-height: normal;
@@ -221,6 +231,11 @@ footer {
     .main-content {
         width: 70vw; 
     }   
+
+    .inputURL {
+        /* min-width: 50vw; */
+    width: 100%;
+    }
 
     #latestPost>img {
         width: 100%;
